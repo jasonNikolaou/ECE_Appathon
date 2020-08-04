@@ -3,11 +3,12 @@ import React from 'react';
 const Stations = ({stations, handleClickBack}) => {
   const viewStations = stations.map(station => {
     const name = station['station']['device_Name'];
+    const id = station['station']['device_id'];
     const weather = station['weather'];
     const weatherDescription = weather['weather'][0]['description']
     const temperature = weather['main']['temp']
     return (
-    <li key={name}>
+    <li key={id}>
       <div className="station">
         <h2> {name} </h2>
         <p> {weatherDescription} </p>

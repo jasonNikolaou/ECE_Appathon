@@ -66,7 +66,7 @@ class AccessibleStations extends React.Component {
     const stations = (this.state.filter === "") ? this.state.stations : this.state.sortedStations;
     return (
       <div>
-        <p> Sort stations by distance from my location: </p>
+        <p> <b>Sort</b> stations by distance from my location: </p>
         <Button variant="outline-primary" onClick={this.handleClickFilterStations}>
           Sort
         </Button>
@@ -74,6 +74,7 @@ class AccessibleStations extends React.Component {
           Back
         </Button>
         <br/>
+        <p> Press <b>view stations</b> to view the accessible stations from each station. </p>
         <h3> Stations without rain: </h3>
         <ul className='stationList'>
         {stations.map(station => {

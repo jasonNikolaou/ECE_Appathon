@@ -22,32 +22,36 @@ class App extends React.Component {
   }
 
   async componentDidMount() {
+    try {
+      //const stationsJSON = await fetch('http://feed.opendata.imet.gr:23577/itravel/devices.json');
+      //const stations = await stationsJSON.json();
+      // navigator.geolocation.getCurrentPosition(res =>
+      //   this.setState({
+      //     location: {
+      //       lat: res.coords.latitude,
+      //       lon: res.coords.longitude
+      //     }
+      //   })
+      // )
+      const stations = changeStationName(this.state.stations);
+      const weatherJSON = await Promise.all(stations.map(station => {
+        const lat = station['lat'];
+        const lon = station['lon'];
+        return fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=94f3c8e684ecb557e3091f514c7fe252`)}
+      ));
 
-    //const stationsJSON = await fetch('http://feed.opendata.imet.gr:23577/itravel/devices.json');
-    //const stations = await stationsJSON.json();
-    // navigator.geolocation.getCurrentPosition(res =>
-    //   this.setState({
-    //     location: {
-    //       lat: res.coords.latitude,
-    //       lon: res.coords.longitude
-    //     }
-    //   })
-    // )
-    const stations = changeStationName(this.state.stations);
-    const weatherJSON = await Promise.all(stations.map(station => {
-      const lat = station['lat'];
-      const lon = station['lon'];
-      return fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=94f3c8e684ecb557e3091f514c7fe252`)}
-    ));
-
-    const weather = await Promise.all(weatherJSON.map(res => res.json()))
-    const stationsWithWeather = weather.map((w, i) => ({
-      station: stations[i],
-      weather: w
-    }))
-    this.setState({
-      stations: stationsWithWeather
-    })
+      const weather = await Promise.all(weatherJSON.map(res => res.json()))
+      const stationsWithWeather = weather.map((w, i) => ({
+        station: stations[i],
+        weather: w
+      }))
+      this.setState({
+        stations: stationsWithWeather
+      })
+    }
+    catch(err) {
+      console.log(err);
+    }
   }
 
   handleClickAccessibleStations() {

@@ -14,16 +14,16 @@ const Stations = ({stations, handleClickBack}) => {
     return (
     <li key={id}>
       <div className="station">
-        <h2> {name} </h2>
-        <p> {weatherDescription} </p>
+        <h3> {name} </h3>
+        <p> <b>Description</b>: {weatherDescription} </p>
         <img alt='' src={img} width="100" height="100"/>
-        <p> Temperature: {temperature} </p>
+        <p> <b>Temperature</b>: {temperature} </p>
       </div>
     </li>
   )})
   return (
     <div>
-      <h2> Stations </h2>
+      <h2> Stations weather conditions </h2>
       <Button variant='outline-primary' onClick={handleClickBack}>
         Back
       </Button>

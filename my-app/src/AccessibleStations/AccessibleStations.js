@@ -21,7 +21,7 @@ class AccessibleStations extends React.Component {
       filter: ""
     }
     this.handleClickFilterStations = this.handleClickFilterStations.bind(this);
-    this.handleClickViewLines = this.handleClickViewLines.bind(this);
+    this.handleClickViewStations = this.handleClickViewStations.bind(this);
   }
 
   handleClickFilterStations() {
@@ -33,7 +33,7 @@ class AccessibleStations extends React.Component {
     })
   }
 
-  async handleClickViewLines(id) {
+  async handleClickViewStations(id) {
     try {
       const traj_ids_json = await fetch(`http://147.102.19.45:8080/services/getItravelIdTrajectories/${id}`);
       const traj_ids = await traj_ids_json.json();
@@ -81,10 +81,10 @@ class AccessibleStations extends React.Component {
           const id = st['device_id'];
           if (id !== this.state.id) {
             return (
-              <li key={st['device_id']}>
+              <li className="station-li" key={st['device_id']}>
                 <p className='stationName'> {st['device_Name']} </p>
-                <Button variant="outline-primary" onClick={() => this.handleClickViewLines(id)}>
-                  View lines
+                <Button variant="outline-primary" onClick={() => this.handleClickViewStations(id)}>
+                  View stations
                 </Button>
               </li>
             );

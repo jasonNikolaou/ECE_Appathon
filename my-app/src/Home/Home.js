@@ -1,14 +1,19 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
 
 const Home = ({handleClickStation, handleClickAccessibleStations}) => {
   return (
-    <div>
-      <button onClick={handleClickAccessibleStations}>
+    <div className="home mx-auto">
+      <p> this is a text </p>
+      <p> this is again a text</p>
+
+      <Button className="home-button" variant="outline-primary" onClick={handleClickAccessibleStations}>
         Accessible Stations
-      </button>
-      <button onClick={handleClickStation}>
+      </Button>
+      <br/>
+      <Button className="home-button" variant="outline-primary" onClick={handleClickStation}>
         Stations
-      </button>
+      </Button>
     </div>
   )
 }

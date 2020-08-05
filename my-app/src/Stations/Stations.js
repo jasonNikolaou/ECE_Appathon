@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
 
 const Stations = ({stations, handleClickBack}) => {
   const viewStations = stations.map(station => {
@@ -12,6 +13,7 @@ const Stations = ({stations, handleClickBack}) => {
       <div className="station">
         <h2> {name} </h2>
         <p> {weatherDescription} </p>
+        <img alt='' src="few-clouds.png" width="100" height="100"/>
         <p> Temperature: {temperature} </p>
       </div>
     </li>
@@ -19,10 +21,10 @@ const Stations = ({stations, handleClickBack}) => {
   return (
     <div>
       <h2> Stations </h2>
-      <ul>{viewStations}</ul>
-      <button onClick={handleClickBack}>
+      <Button variant='outline-primary' onClick={handleClickBack}>
         Back
-      </button>
+      </Button>
+      <ul>{viewStations}</ul>
     </div>
   )
 }

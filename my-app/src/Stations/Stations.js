@@ -10,7 +10,7 @@ const Stations = ({stations, handleClickBack}) => {
     const weather = station['weather'];
     const weatherDescription = weather['weather'][0]['description']
     const temperature = weather['main']['temp']
-    const img = weatherDescription.replace(' ', '-') + '.png';
+    const img = 'weather-icons/'+ weatherDescription.replace(' ', '-') + '.png';
     return (
     <li key={id}>
       <div className="station">

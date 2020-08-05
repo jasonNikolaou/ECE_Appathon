@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
 
 import {
   filterNotRaining,
@@ -17,6 +18,7 @@ class AccessibleStations extends React.Component {
       sortedStations: sortStations(stations, location),
       accessibleStations: [],
       id: '',
+      loading: false,
       location: location,
       filter: ""
     }
@@ -34,6 +36,10 @@ class AccessibleStations extends React.Component {
   }
 
   async handleClickViewStations(id) {
+    this.setState({
+      id,
+      loading: true
+    });
     try {
       const traj_ids_json = await fetch(`http://147.102.19.45:8080/services/getItravelIdTrajectories/${id}`);
       const traj_ids = await traj_ids_json.json();
@@ -54,10 +60,14 @@ class AccessibleStations extends React.Component {
       console.log('accessibleStations', accessibleStations);
       this.setState({
         accessibleStations,
+        loading: false,
         id
       });
     }
     catch(err) {
+      this.setState({
+        loading: false
+      })
       console.log(err);
     }
   }
@@ -90,10 +100,10 @@ class AccessibleStations extends React.Component {
               </li>
             );
           }
-          else {
+          else if (this.state.loading === false){
             return (
               <li key={st['device_id']}>
-                <p> Accessible stations from {st['device_Name']}: </p>
+                <p> Accessible stations from <b>{st['device_Name']}</b>: </p>
                 <ul>
                   {this.state.accessibleStations.map(st => (
                     <li key={st['device_id']}>
@@ -103,6 +113,15 @@ class AccessibleStations extends React.Component {
                 </ul>
               </li>
             )
+          }
+          else {
+            return (
+              <li className="station-li" key={st['device_id']}>
+                <p className='stationName'> {st['device_Name']} </p>
+
+                <Spinner animation="border" />
+              </li>
+            );
           }
           })}
           </ul>

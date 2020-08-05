@@ -4,6 +4,7 @@ import changeStationName from './changeStationName';
 import filterNotRaining from './filterNotRaining';
 import sortStations from './sortStations';
 import getStationsFromDeviceIds from './getStationsFromDeviceIds';
+import sortStationsByName from './sortStationsByName';
 
 export {
   stations,
@@ -11,5 +12,6 @@ export {
   changeStationName,
   filterNotRaining,
   sortStations,
-  getStationsFromDeviceIds
+  getStationsFromDeviceIds,
+  sortStationsByName
  };

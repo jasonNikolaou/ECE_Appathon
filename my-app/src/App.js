@@ -3,7 +3,7 @@ import { Home } from './Home';
 import { AccessibleStations } from './AccessibleStations';
 import { Stations } from './Stations';
 
-import { savedStations, changeStationName } from './helpFunctions';
+import { proxy, savedStations, changeStationName } from './helpFunctions';
 
 class App extends React.Component {
   constructor(props) {
@@ -30,13 +30,13 @@ class App extends React.Component {
     )
     let stations = [];
     try {
-      const stationsJSON = await fetch('http://feed.opendata.imet.gr:23577/itravel/devices.json');
+      const stationsJSON = await fetch(proxy + 'http://feed.opendata.imet.gr:23577/itravel/devices.json');
       const stations_ = await stationsJSON.json();
       stations = changeStationName(stations_);
     }
     catch(err) {
       console.log('Fetching stations failed. Use saved stations.')
-      stations = savedStations;
+      stations = changeStationName(savedStations);
     }
 
     try {

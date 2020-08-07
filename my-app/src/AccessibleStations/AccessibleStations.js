@@ -5,8 +5,10 @@ import Spinner from 'react-bootstrap/Spinner';
 import {
   filterNotRaining,
   sortStations,
-  getStationsFromDeviceIds
+  getStationsFromDeviceIds,
+  proxy
  } from '../helpFunctions';
+
 
 class AccessibleStations extends React.Component {
   constructor(props) {
@@ -22,11 +24,11 @@ class AccessibleStations extends React.Component {
       location: location,
       filter: ""
     }
-    this.handleClickFilterStations = this.handleClickFilterStations.bind(this);
+    this.handleClickSortStations = this.handleClickSortStations.bind(this);
     this.handleClickViewStations = this.handleClickViewStations.bind(this);
   }
 
-  handleClickFilterStations() {
+  handleClickSortStations() {
     if (this.state.location === {}) {
       alert("You should allow access to location");
     }
@@ -41,14 +43,14 @@ class AccessibleStations extends React.Component {
       loading: true
     });
     try {
-      const traj_ids_json = await fetch(`http://147.102.19.45:8080/services/getItravelIdTrajectories/${id}`);
+      const traj_ids_json = await fetch(proxy + `http://147.102.19.45:8080/services/getItravelIdTrajectories/${id}`);
       const traj_ids = await traj_ids_json.json();
       console.log("trajectory ids", traj_ids);
       const onlyTraj_ids = traj_ids.map(traj_id => traj_id["trajectory_id"])
 
       const itravel_ids_json = await Promise.all(onlyTraj_ids.map(traj_id => (
         //fetch(`http://147.102.19.45:8080/services/getTrajectoryIdTrajectories/${traj_id}`)
-        fetch(`http://147.102.16.156:8080/services/getTrajectoryIdTrajectories/${traj_id}`)
+        fetch(proxy + `http://147.102.16.156:8080/services/getTrajectoryIdTrajectories/${traj_id}`)
       )))
 
       const itravel_ids = await Promise.all(itravel_ids_json.map(id => id.json()));
@@ -78,7 +80,7 @@ class AccessibleStations extends React.Component {
     return (
       <div>
         <p> <b>Sort</b> stations by distance from my location: </p>
-        <Button variant="outline-primary" onClick={this.handleClickFilterStations}>
+        <Button variant="outline-primary" onClick={this.handleClickSortStations}>
           Sort
         </Button>
         <Button variant="outline-primary" onClick={this.props.handleClickBack}>

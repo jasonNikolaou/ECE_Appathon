@@ -6,6 +6,7 @@ import sortStations from './sortStations';
 import getStationsFromDeviceIds from './getStationsFromDeviceIds';
 import sortStationsByName from './sortStationsByName';
 import getImageName from './getImageName';
+import proxy from './proxy';
 
 export {
   savedStations,
@@ -15,5 +16,6 @@ export {
   sortStations,
   getStationsFromDeviceIds,
   sortStationsByName,
-  getImageName
+  getImageName,
+  proxy
  };

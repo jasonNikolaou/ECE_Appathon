@@ -8,7 +8,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      stations: savedStations,
+      stations: changeStationName(savedStations),
       location: {},
       mode: 'Home',
       error: false,
@@ -28,16 +28,7 @@ class App extends React.Component {
         }
       })
     )
-    let stations = [];
-    try {
-      const stationsJSON = await fetch(proxy + 'http://feed.opendata.imet.gr:23577/itravel/devices.json');
-      const stations_ = await stationsJSON.json();
-      stations = changeStationName(stations_);
-    }
-    catch(err) {
-      console.log('Fetching stations failed. Using saved stations...')
-    }
-
+    const stations = this.state.stations;
     try {
       const weatherJSON = await Promise.all(stations.map(station => {
         const lat = station['lat'];

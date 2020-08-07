@@ -31,10 +31,11 @@ class AccessibleStations extends React.Component {
     if (!this.props.location) {
       console.log("error. you must give access to your location.");
     }
-
-    this.setState({
-      filter: (this.state.filter === "") ? "sortedStations" : ""
-    });
+    else {
+      this.setState({
+        filter: (this.state.filter === "") ? "sortedStations" : ""
+      });
+    }
   }
 
   async handleClickViewStations(id) {

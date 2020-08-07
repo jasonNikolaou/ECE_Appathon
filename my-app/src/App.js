@@ -3,18 +3,16 @@ import { Home } from './Home';
 import { AccessibleStations } from './AccessibleStations';
 import { Stations } from './Stations';
 
-import { stations, changeStationName } from './helpFunctions';
+import { savedStations, changeStationName } from './helpFunctions';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      stations: stations,
-      location: {
-        lat: "40.6150064974067820",
-        lon: "22.9541949287744270"
-      },
-      mode: 'Home'
+      stations: [],
+      location: {},
+      mode: 'Home',
+      error: false
     }
     this.handleClickAccessibleStations = this.handleClickAccessibleStations.bind(this);
     this.handleClickStation = this.handleClickStation.bind(this);
@@ -22,18 +20,26 @@ class App extends React.Component {
   }
 
   async componentDidMount() {
+    navigator.geolocation.getCurrentPosition(res =>
+      this.setState({
+        location: {
+          lat: res.coords.latitude,
+          lon: res.coords.longitude
+        }
+      })
+    )
+    let stations = [];
     try {
-      //const stationsJSON = await fetch('http://feed.opendata.imet.gr:23577/itravel/devices.json');
-      //const stations = await stationsJSON.json();
-      // navigator.geolocation.getCurrentPosition(res =>
-      //   this.setState({
-      //     location: {
-      //       lat: res.coords.latitude,
-      //       lon: res.coords.longitude
-      //     }
-      //   })
-      // )
-      const stations = changeStationName(this.state.stations);
+      const stationsJSON = await fetch('http://feed.opendata.imet.gr:23577/itravel/devices.json');
+      const stations_ = await stationsJSON.json();
+      stations = changeStationName(stations_);
+    }
+    catch(err) {
+      console.log('Fetching stations failed. Use saved stations.')
+      stations = savedStations;
+    }
+
+    try {
       const weatherJSON = await Promise.all(stations.map(station => {
         const lat = station['lat'];
         const lon = station['lon'];
@@ -50,26 +56,21 @@ class App extends React.Component {
       })
     }
     catch(err) {
-      console.log(err);
+      console.log('Fetching weather data failed...')
+      this.setState({ error: true })
     }
   }
 
   handleClickAccessibleStations() {
-    this.setState({
-      mode:'AccessibleStations'
-    })
+    this.setState({ mode:'AccessibleStations' })
   }
 
   handleClickStation() {
-    this.setState({
-      mode: 'Station'
-    })
+    this.setState({ mode: 'Station' })
   }
 
   handleClickBack() {
-    this.setState({
-      mode: 'Home'
-    })
+    this.setState({ mode: 'Home' })
   }
 
   render() {
@@ -97,6 +98,7 @@ class App extends React.Component {
           <Home
             handleClickStation={this.handleClickStation}
             handleClickAccessibleStations={this.handleClickAccessibleStations}
+            error={this.state.error}
           />
         }
       </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 
-const Home = ({handleClickStation, handleClickAccessibleStations}) => {
+const Home = ({handleClickStation, handleClickAccessibleStations, error}) => {
   return (
     <div className="home mx-auto">
       <p> This is an application developed for the course:</p>
@@ -17,6 +17,15 @@ const Home = ({handleClickStation, handleClickAccessibleStations}) => {
       <Button className="home-button" variant="outline-primary" onClick={handleClickStation}>
         Weather
       </Button>
+      { error === true
+        ?
+        <div>
+          <p> <b>Error</b>: Cannot fetch data...</p>
+          <p> We are sorry. Try again later. </p>
+        </div>
+        :
+        ''
+      }
     </div>
   )
 }

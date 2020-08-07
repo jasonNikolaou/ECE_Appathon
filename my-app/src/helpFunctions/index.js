@@ -1,4 +1,4 @@
-import stations from './stations';
+import savedStations from './savedStations';
 import haversine_distance from './haversine_distance';
 import changeStationName from './changeStationName';
 import filterNotRaining from './filterNotRaining';
@@ -7,7 +7,7 @@ import getStationsFromDeviceIds from './getStationsFromDeviceIds';
 import sortStationsByName from './sortStationsByName';
 
 export {
-  stations,
+  savedStations,
   haversine_distance,
   changeStationName,
   filterNotRaining,

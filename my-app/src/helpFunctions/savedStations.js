@@ -1,4 +1,4 @@
-const stations = [
+const savedStations = [
     {
         "device_id": "11",
         "device_Name": "iTravel-1-Lagada",
@@ -421,4 +421,4 @@ const stations = [
     }
 ];
 
-export default stations;
+export default savedStations;

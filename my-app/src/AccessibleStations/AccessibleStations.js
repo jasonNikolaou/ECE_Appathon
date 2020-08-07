@@ -66,6 +66,7 @@ class AccessibleStations extends React.Component {
     }
     catch(err) {
       this.setState({
+        id: '',
         loading: false
       })
       console.log(err);

@@ -7,11 +7,13 @@ const Home = ({handleClickStation, handleClickAccessibleStations, error}) => {
       <p> This is an application developed for the course:</p>
       <p><b>Internet and Applications</b>, NTUA ECE</p>
 
-      <p>Press <b>Not raining</b> to view the stations without rain.</p>
+      <p><b>Thessaloniki</b>, Greece </p>
+      <p>Data taken from <b>IMET</b> and <b>openweathermap</b></p>
+      <p>Press <b>Accesible</b> to view the accessible stations (without rain, snow, etc).</p>
       <p>Press <b>Weather</b> to view the weather conditions in every station.</p>
 
       <Button className="home-button" variant="outline-primary" onClick={handleClickAccessibleStations}>
-        Not raining
+        Accessible
       </Button>
       <br/>
       <Button className="home-button" variant="outline-primary" onClick={handleClickStation}>

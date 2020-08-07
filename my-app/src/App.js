@@ -9,7 +9,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      stations: [],
+      stations: savedStations,
       location: {},
       mode: 'Home',
       error: false
@@ -35,8 +35,7 @@ class App extends React.Component {
       stations = changeStationName(stations_);
     }
     catch(err) {
-      console.log('Fetching stations failed. Use saved stations.')
-      stations = changeStationName(savedStations);
+      console.log('Fetching stations failed. Using saved stations.')
     }
 
     try {
@@ -83,8 +82,8 @@ class App extends React.Component {
         { this.state.mode === 'AccessibleStations'
           ?
           <AccessibleStations
-            location={this.state.location}
             stations={this.state.stations}
+            location={this.state.location}
             handleClickBack={this.handleClickBack}
           />
           :

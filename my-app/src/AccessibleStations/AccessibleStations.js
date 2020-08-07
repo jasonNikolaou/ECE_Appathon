@@ -21,7 +21,6 @@ class AccessibleStations extends React.Component {
       accessibleStations: [],
       id: '',
       loading: false,
-      location: location,
       filter: ""
     }
     this.handleClickSortStations = this.handleClickSortStations.bind(this);
@@ -29,12 +28,13 @@ class AccessibleStations extends React.Component {
   }
 
   handleClickSortStations() {
-    if (this.state.location === {}) {
-      alert("You should allow access to location");
+    if (!this.props.location) {
+      console.log("error. you must give access to your location.");
     }
+
     this.setState({
       filter: (this.state.filter === "") ? "sortedStations" : ""
-    })
+    });
   }
 
   async handleClickViewStations(id) {
@@ -79,7 +79,7 @@ class AccessibleStations extends React.Component {
     const stations = (this.state.filter === "") ? this.state.stations : this.state.sortedStations;
     return (
       <div>
-        <p> <b>Sort</b> stations by distance from my location: </p>
+        <p> <b>Sort</b> stations <b>by distance from my location</b>: </p>
         <Button variant="outline-primary" onClick={this.handleClickSortStations}>
           Sort
         </Button>
@@ -87,8 +87,8 @@ class AccessibleStations extends React.Component {
           Back
         </Button>
         <br/>
-        <p> Press <b>view stations</b> to view the accessible stations from each station. </p>
-        <h3> Stations without rain: </h3>
+        <p> Press <b>view stations</b> to view the reachable stations from each station. </p>
+        <h3> Accessible Stations: </h3>
         <ul className='stationList'>
         {stations.map(station => {
           const st = station['station'];

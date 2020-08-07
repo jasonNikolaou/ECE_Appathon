@@ -1,0 +1,43 @@
+.header {
+  padding: 40px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 20px;
+}
+
+.stationList {
+
+}
+
+.stationName {
+  font-size: 20px;
+  float: left;
+  margin-right: 10px;
+  font-size: 25px;
+}
+
+.station-li {
+  display: inline-block;
+  width: 100%;
+}
+
+.home {
+  width: 50%;
+  text-align: center;
+}
+
+.home-button {
+  margin: 5px;
+  display: inline-block;
+}
+
+.btn {
+  border-color: #1abc9c !important;
+  color: #1abc9c !important;
+  transition: 1s !important;
+}
+.btn:hover {
+  background-color: #1abc9c !important;
+  color: white !important;
+}

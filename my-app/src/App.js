@@ -2,7 +2,6 @@ import React from 'react';
 import { Home } from './Home';
 import { AccessibleStations } from './AccessibleStations';
 import { Stations } from './Stations';
-
 import { proxy, savedStations, changeStationName } from './helpFunctions';
 
 class App extends React.Component {
@@ -12,7 +11,8 @@ class App extends React.Component {
       stations: savedStations,
       location: {},
       mode: 'Home',
-      error: false
+      error: false,
+      fetchedData: false
     }
     this.handleClickAccessibleStations = this.handleClickAccessibleStations.bind(this);
     this.handleClickStation = this.handleClickStation.bind(this);
@@ -35,7 +35,7 @@ class App extends React.Component {
       stations = changeStationName(stations_);
     }
     catch(err) {
-      console.log('Fetching stations failed. Using saved stations.')
+      console.log('Fetching stations failed. Using saved stations...')
     }
 
     try {
@@ -51,6 +51,7 @@ class App extends React.Component {
         weather: w
       }))
       this.setState({
+        fetchedData: true,
         stations: stationsWithWeather
       })
     }
@@ -61,11 +62,15 @@ class App extends React.Component {
   }
 
   handleClickAccessibleStations() {
-    this.setState({ mode:'AccessibleStations' })
+    if (this.state.fetchedData === true) {
+      this.setState({ mode:'AccessibleStations' })
+    }
   }
 
   handleClickStation() {
-    this.setState({ mode: 'Station' })
+    if (this.state.fetchedData === true) {
+      this.setState({ mode: 'Station' })
+    }
   }
 
   handleClickBack() {
@@ -98,6 +103,7 @@ class App extends React.Component {
             handleClickStation={this.handleClickStation}
             handleClickAccessibleStations={this.handleClickAccessibleStations}
             error={this.state.error}
+            fetchedData={this.state.fetchedData}
           />
         }
       </div>

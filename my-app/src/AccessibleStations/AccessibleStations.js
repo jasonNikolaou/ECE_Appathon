@@ -79,7 +79,7 @@ class AccessibleStations extends React.Component {
     const stations = (this.state.filter === "") ? this.state.stations : this.state.sortedStations;
     return (
       <div>
-        <p> <b>Sort</b> stations <b>by distance from my location</b>: </p>
+        <p><b>Sort</b> stations <b>by distance from my location</b>:</p>
         <Button variant="outline-primary" onClick={this.handleClickSortStations}>
           Sort
         </Button>
@@ -103,7 +103,7 @@ class AccessibleStations extends React.Component {
               </li>
             );
           }
-          else if (this.state.loading === false){
+          else if (this.state.loading === false) {
             return (
               <li key={st['device_id']}>
                 <p> Accessible stations from <b>{st['device_Name']}</b>: </p>
@@ -121,7 +121,6 @@ class AccessibleStations extends React.Component {
             return (
               <li className="station-li" key={st['device_id']}>
                 <p className='stationName'> {st['device_Name']} </p>
-
                 <Spinner animation="border" />
               </li>
             );

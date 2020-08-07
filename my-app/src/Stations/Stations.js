@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import { sortStationsByName } from '../helpFunctions';
+import { getImageName, sortStationsByName } from '../helpFunctions';
 
 const Stations = ({stations, handleClickBack}) => {
   const sortedStations = sortStationsByName(stations);
@@ -8,10 +8,10 @@ const Stations = ({stations, handleClickBack}) => {
     const name = station['station']['device_Name'];
     const id = station['station']['device_id'];
     const weather = station['weather'];
-    const weatherDescription = weather['weather'][0]['description']
-    const temperature = weather['main']['temp']
-    
-    const img = 'weather-icons/'+ weatherDescription.replace(' ', '-') + '.png';
+    const weatherID = weather['weather'][0]['id'];
+    const weatherDescription = weather['weather'][0]['description'];
+    const temperature = weather['main']['temp'];
+    const img = 'weather-icons/'+ getImageName(weatherID) + '.png';
     return (
     <li key={id}>
       <div className="station">
@@ -22,6 +22,7 @@ const Stations = ({stations, handleClickBack}) => {
       </div>
     </li>
   )})
+  
   return (
     <div>
       <h2> Stations weather conditions </h2>

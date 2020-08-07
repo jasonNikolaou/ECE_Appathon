@@ -2,7 +2,7 @@ import React from 'react';
 import { Home } from './Home';
 import { AccessibleStations } from './AccessibleStations';
 import { Stations } from './Stations';
-import { proxy, savedStations, changeStationName } from './helpFunctions';
+import { savedStations, changeStationName } from './helpFunctions';
 
 class App extends React.Component {
   constructor(props) {

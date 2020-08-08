@@ -32,10 +32,8 @@ class AccessibleStations extends React.Component {
   handleClickSortStations() {
     if (!this.props.location['lat']) {
       this.setState({ locationError: true })
-      console.log("error. you must give access to your location.");
     }
     else {
-      console.log('else');
       this.setState({
         filter: (this.state.filter === "") ? "sortedStations" : ""
       });
@@ -89,7 +87,10 @@ class AccessibleStations extends React.Component {
         <br/>
         { this.state.locationError
           ?
-          <p><b>Allow access to your location</b> to use this feature. </p>
+          <div>
+            <p><b>Allow access to your location</b> to use this feature. </p>
+            <p> (Go to Settings > Privacy and security > Site settings > Location) </p>
+          </div>
           :
           ''
         }

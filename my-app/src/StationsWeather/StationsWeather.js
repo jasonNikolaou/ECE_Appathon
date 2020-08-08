@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import { getImageName, sortStationsByName } from '../helpFunctions';
 
-const Stations = ({stations, handleClickBack}) => {
+const StationsWeather = ({stations, handleClickBack}) => {
   const sortedStations = sortStationsByName(stations);
   const viewStations = sortedStations.map(station => {
     const name = station['station']['device_Name'];
@@ -22,7 +22,7 @@ const Stations = ({stations, handleClickBack}) => {
       </div>
     </li>
   )})
-  
+
   return (
     <div>
       <h2> Stations weather conditions </h2>
@@ -34,4 +34,4 @@ const Stations = ({stations, handleClickBack}) => {
   )
 }
 
-export default Stations;
+export default StationsWeather;

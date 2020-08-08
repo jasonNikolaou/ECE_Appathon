@@ -1,7 +1,7 @@
 import React from 'react';
 import { Home } from './Home';
 import { AccessibleStations } from './AccessibleStations';
-import { Stations } from './Stations';
+import { StationsWeather } from './StationsWeather';
 import { savedStations, changeStationName } from './helpFunctions';
 
 class App extends React.Component {
@@ -15,7 +15,7 @@ class App extends React.Component {
       fetchedData: false
     }
     this.handleClickAccessibleStations = this.handleClickAccessibleStations.bind(this);
-    this.handleClickStation = this.handleClickStation.bind(this);
+    this.handleClickStationsWeather = this.handleClickStationsWeather.bind(this);
     this.handleClickBack = this.handleClickBack.bind(this);
   }
 
@@ -58,9 +58,9 @@ class App extends React.Component {
     }
   }
 
-  handleClickStation() {
+  handleClickStationsWeather() {
     if (this.state.fetchedData === true) {
-      this.setState({ mode: 'Station' })
+      this.setState({ mode: 'StationWeather' })
     }
   }
 
@@ -83,15 +83,15 @@ class App extends React.Component {
             handleClickBack={this.handleClickBack}
           />
           :
-          this.state.mode === 'Station'
+          this.state.mode === 'StationWeather'
           ?
-          <Stations
+          <StationsWeather
             stations={this.state.stations}
             handleClickBack={this.handleClickBack}
           />
           :
           <Home
-            handleClickStation={this.handleClickStation}
+            handleClickStationsWeather={this.handleClickStationsWeather}
             handleClickAccessibleStations={this.handleClickAccessibleStations}
             error={this.state.error}
             fetchedData={this.state.fetchedData}

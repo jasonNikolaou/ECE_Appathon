@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 
-const Home = ({handleClickStation, handleClickAccessibleStations, fetchedData, error}) => {
+const Home = ({handleClickStationsWeather, handleClickAccessibleStations, fetchedData, error}) => {
   return (
     <div className="home mx-auto">
       <p> This is an application developed for the course:</p>
@@ -19,7 +19,7 @@ const Home = ({handleClickStation, handleClickAccessibleStations, fetchedData, e
         Accessible
       </Button>
       <br/>
-      <Button className="home-button" variant="outline-primary" onClick={handleClickStation}>
+      <Button className="home-button" variant="outline-primary" onClick={handleClickStationsWeather}>
         Weather
       </Button>
       { error === true

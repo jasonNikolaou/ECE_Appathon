@@ -19,7 +19,7 @@ class AccessibleStations extends React.Component {
     this.state = {
       stations: stations,
       sortedStations: sortStations(stations, location),
-      accessibleStations: [],
+      reachableStations: [],
       id: '',
       loading: false,
       filter: "",
@@ -57,9 +57,9 @@ class AccessibleStations extends React.Component {
       const device_ids = itravel_ids.flatMap(itravel_ids_arr => (
         itravel_ids_arr.map(id => id['itravel_id'])
       ))
-      const accessibleStations = getStationsFromDeviceIds(this.state.stations, device_ids);
+      const reachableStations = getStationsFromDeviceIds(this.state.stations, device_ids);
       this.setState({
-        accessibleStations,
+        reachableStations,
         loading: false,
         id
       });
@@ -113,9 +113,9 @@ class AccessibleStations extends React.Component {
           else if (this.state.loading === false) {
             return (
               <li key={st['device_id']}>
-                <p> Accessible stations from <b>{st['device_Name']}</b>: </p>
+                <p> Reachable stations from <b>{st['device_Name']}</b>: </p>
                 <ul>
-                  {this.state.accessibleStations.map(st => (
+                  {this.state.reachableStations.map(st => (
                     <li key={st['device_id']}>
                       <p className='stationName2'> {st['device_Name']} </p>
                     </li>

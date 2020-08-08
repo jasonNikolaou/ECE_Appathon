@@ -5,6 +5,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import {
   filterNotRaining,
   sortStations,
+  sortStationsByName,
   getStationsFromDeviceIds,
   proxy
  } from '../helpFunctions';
@@ -13,7 +14,7 @@ import {
 class AccessibleStations extends React.Component {
   constructor(props) {
     super(props);
-    const stations = filterNotRaining(this.props.stations);
+    const stations = sortStationsByName(filterNotRaining(this.props.stations));
     const location = this.props.location;
     this.state = {
       stations: stations,

@@ -11,7 +11,7 @@ const Home = ({handleClickStation, handleClickAccessibleStations, fetchedData, e
       <p><b>Thessaloniki</b>, Greece </p>
       <p>Data taken from <b>IMET</b> and <b>openweathermap</b>.</p>
 
-      <p>You must <b>allow access to your location</b> in order to use this application.</p>
+      <p><b>Allow access to your location</b> in order to use all features of this application.</p>
       <p>Press <b>Accesible</b> to view the accessible stations (without rain, snow, etc).</p>
       <p>Press <b>Weather</b> to view the weather conditions in every station.</p>
 

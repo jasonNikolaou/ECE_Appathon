@@ -22,17 +22,20 @@ class AccessibleStations extends React.Component {
       accessibleStations: [],
       id: '',
       loading: false,
-      filter: ""
+      filter: "",
+      locationError: false
     }
     this.handleClickSortStations = this.handleClickSortStations.bind(this);
     this.handleClickViewStations = this.handleClickViewStations.bind(this);
   }
 
   handleClickSortStations() {
-    if (!this.props.location) {
+    if (!this.props.location['lat']) {
+      this.setState({ locationError: true })
       console.log("error. you must give access to your location.");
     }
     else {
+      console.log('else');
       this.setState({
         filter: (this.state.filter === "") ? "sortedStations" : ""
       });
@@ -47,21 +50,16 @@ class AccessibleStations extends React.Component {
     try {
       const traj_ids_json = await fetch(proxy + `http://147.102.19.45:8080/services/getItravelIdTrajectories/${id}`);
       const traj_ids = await traj_ids_json.json();
-      console.log("trajectory ids", traj_ids);
       const onlyTraj_ids = traj_ids.map(traj_id => traj_id["trajectory_id"])
-
       const itravel_ids_json = await Promise.all(onlyTraj_ids.map(traj_id => (
         //fetch(`http://147.102.19.45:8080/services/getTrajectoryIdTrajectories/${traj_id}`)
         fetch(proxy + `http://147.102.16.156:8080/services/getTrajectoryIdTrajectories/${traj_id}`)
       )))
-
       const itravel_ids = await Promise.all(itravel_ids_json.map(id => id.json()));
       const device_ids = itravel_ids.flatMap(itravel_ids_arr => (
         itravel_ids_arr.map(id => id['itravel_id'])
       ))
-      console.log('device_ids', device_ids);
       const accessibleStations = getStationsFromDeviceIds(this.state.stations, device_ids);
-      console.log('accessibleStations', accessibleStations);
       this.setState({
         accessibleStations,
         loading: false,
@@ -89,6 +87,12 @@ class AccessibleStations extends React.Component {
           Back
         </Button>
         <br/>
+        { this.state.locationError
+          ?
+          <p><b>Allow access to your location</b> to use this feature. </p>
+          :
+          ''
+        }
         <p> Press <b>view stations</b> to view the reachable stations from each station. </p>
         <h3> Accessible Stations: </h3>
         <ul className='stationList'>

@@ -1,6 +1,9 @@
 import haversine_distance from './haversine_distance';
 
 const sortStations = (stations, location) => {
+  if (!location) { //location not defined
+    return stations;
+  }
   const sortedStations = [...stations].sort((st1, st2) => {
     const pos1 = {
       lat: st1['station']['lat'],

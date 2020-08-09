@@ -31,7 +31,7 @@ const Home = ({handleClickStationsWeather, handleClickAccessibleStations, fetche
         :
         ''
       }
-      { fetchedData === false
+      { fetchedData === false && error === false
         ?
         <div>
           <p>Fetching data...</p>

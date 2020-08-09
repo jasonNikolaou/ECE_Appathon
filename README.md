@@ -28,7 +28,7 @@ Application for ntua ece appathon project
  
  - τοπική εγκατάσταση (σε Ubuntu):
  
-  git clone https://github.com/jasonNikolaou/ECE_Appathon/
+  git clone https://github.com/jasonNikolaou/ECE_Appathon.git
   
   cd ECE_Appathon/my-app
  

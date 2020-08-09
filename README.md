@@ -16,8 +16,8 @@ Application for ntua ece appathon project
 ## Υλοποίηση
  Για την υλοποίηση θα χρησιμοποιήσουμε τα ακόλουθα:
  - HTML
- - Javascript (κυρίως ReactJS και Material UI https://material-ui.com/ )
- - CSS
+ - Javascript (κυρίως ReactJS)
+ - CSS (react-bootstrap)
 
 ## Χρήση της εφαρμογής
  - ο απλούστερος τρόπος είναι να μπείτε στην σελίδα (github page):

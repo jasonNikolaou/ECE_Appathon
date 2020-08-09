@@ -1,16 +1,16 @@
 const getStationsFromDeviceIds = (stations, device_ids) => {
-  const AccessibleStations = [];
+  const reachableStations = [];
   for (const station of stations) {
     const st = station['station'];
     const id = st['device_id'];
     if (device_ids.includes(id)) {
-      AccessibleStations.push({
+      reachableStations.push({
         'device_id': id,
         'device_Name': st['device_Name']
       });
     }
   }
-  return AccessibleStations;
+  return reachableStations;
 }
 
 export default getStationsFromDeviceIds;

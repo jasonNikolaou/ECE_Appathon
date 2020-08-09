@@ -21,13 +21,25 @@ Application for ntua ece appathon project
 
 ## Χρήση της εφαρμογής
  - ο απλούστερος τρόπος είναι να μπείτε στην σελίδα (github page):
+ 
+ 
  https://jasonnikolaou.github.io/ECE_Appathon/
+ 
+ 
  - τοπική εγκατάσταση (σε Ubuntu):
- git clone https://github.com/jasonNikolaou/ECE_Appathon/
- cd ECE_Appathon/my-app
- npm install
- -development mode:
+ 
+  git clone https://github.com/jasonNikolaou/ECE_Appathon/
+  
+  cd ECE_Appathon/my-app
+ 
+  npm install
+ 
+- development mode:
+
  npm start
- -production build:
+ 
+- production build:
+
 sudo npm install -g serve
+
 serve -s build

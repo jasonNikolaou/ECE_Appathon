@@ -46,7 +46,8 @@ class AccessibleStations extends React.Component {
       loading: true
     });
     try {
-      const traj_ids_json = await fetch(proxy + `http://147.102.19.45:8080/services/getItravelIdTrajectories/${id}`);
+      //const traj_ids_json = await fetch(proxy + `http://147.102.19.45:8080/services/getItravelIdTrajectories/${id}`);
+      const traj_ids_json = await fetch(proxy + `http://147.102.16.156:8080/services/getItravelIdTrajectories/${id}`);
       const traj_ids = await traj_ids_json.json();
       const onlyTraj_ids = traj_ids.map(traj_id => traj_id["trajectory_id"])
       const itravel_ids_json = await Promise.all(onlyTraj_ids.map(traj_id => (

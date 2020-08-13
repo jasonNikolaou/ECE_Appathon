@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "eb96360e03e8de89efd4387bf39e4b9e",
+    "revision": "80f92aa3f8d20e259b370948456617af",
     "url": "/ECE_Appathon/index.html"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ECE_Appathon/static/js/2.97c4e905.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "31c8d3cd70f23ec7613d",
-    "url": "/ECE_Appathon/static/js/main.ffce30e4.chunk.js"
+    "revision": "357f891abb425a2660d4",
+    "url": "/ECE_Appathon/static/js/main.dce9f25b.chunk.js"
   },
   {
     "revision": "7103308ee3c1e2766264",

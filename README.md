@@ -16,18 +16,30 @@ Application for ntua ece appathon project
 ## Υλοποίηση
  Για την υλοποίηση θα χρησιμοποιήσουμε τα ακόλουθα:
  - HTML
- - Javascript (κυρίως ReactJS και Material UI https://material-ui.com/ )
- - CSS
+ - Javascript (κυρίως ReactJS)
+ - CSS (react-bootstrap)
 
 ## Χρήση της εφαρμογής
  - ο απλούστερος τρόπος είναι να μπείτε στην σελίδα (github page):
+ 
+ 
  https://jasonnikolaou.github.io/ECE_Appathon/
+ 
+ 
  - τοπική εγκατάσταση (σε Ubuntu):
- git clone https://github.com/jasonNikolaou/ECE_Appathon/
- cd ECE_Appathon/my-app
- npm install
- -development mode:
+ 
+  git clone https://github.com/jasonNikolaou/ECE_Appathon.git
+  
+  cd ECE_Appathon/my-app
+ 
+  npm install
+ 
+- development mode:
+
  npm start
- -production build:
+ 
+- production build:
+
 sudo npm install -g serve
+
 serve -s build
